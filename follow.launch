@@ -1,0 +1,26 @@
+<launch>
+    <!-- 海龟仿真器 -->
+    <node pkg="turtlesim" type="turtlesim_node" name="sim"/>
+
+    <!-- 键盘控制 -->
+    <node pkg="turtlesim" type="turtle_teleop_key" name="teleop" output="screen"/>
+    
+    <!-- 创建五个乌龟节点 -->
+    <node pkg="turtle_follow" type="turtle_new" args="A B C D E" name="turtle_new" />
+
+    <!-- 创建六个乌龟的tf广播器 -->
+    <node pkg="turtle_follow" type="turtle_broadcaster" args="A" name="turtle1_broadcaster" />
+    <node pkg="turtle_follow" type="turtle_broadcaster" args="B" name="turtle2_broadcaster" />
+    <node pkg="turtle_follow" type="turtle_broadcaster" args="C" name="turtle3_broadcaster" />
+    <node pkg="turtle_follow" type="turtle_broadcaster" args="D" name="turtle4_broadcaster" />
+    <node pkg="turtle_follow" type="turtle_broadcaster" args="E" name="turtle5_broadcaster" />
+ 	<node pkg="turtle_follow" type="turtle_broadcaster" args="turtle1" name="turtle0_broadcaster" />
+ 
+    <!-- 第一个参数的乌龟跟随第二个参数的乌龟 -->
+    <node pkg="turtle_follow" type="turtle_listener" args="A turtle1" name="listener1" />
+    <node pkg="turtle_follow" type="turtle_listener" args="B A" name="listener2" />
+    <node pkg="turtle_follow" type="turtle_listener" args="C B" name="listener3" />
+    <node pkg="turtle_follow" type="turtle_listener" args="D C" name="listener4" />
+    <node pkg="turtle_follow" type="turtle_listener" args="E D" name="listener5" />
+ </launch>
+
